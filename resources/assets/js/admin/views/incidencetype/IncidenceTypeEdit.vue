@@ -34,7 +34,7 @@
 
 <script>
 
-const IncidenceService = require('./../../service/incidenceService');
+const IncidenceService = require('./../../service/incidence-type-service');
 
 export default {
   name: 'incidence-type-edit',

@@ -8,13 +8,14 @@
   </div>
 
   <div class="card-body">
-    <p class="font-weight-bold">Tipo Incidencia : {{ item.data.type }}</p>
+    <p class="font-weight-bold">Tipo Incidencia : {{ item.type }}</p>
   </div>
 </div>
 </template>
 
 <script>
 import AddComponent from '../../components/AddComponent.vue'
+const IncidenceService = require('./../../service/incidence-type-service');
 
 const item = {
   data: { 
@@ -31,11 +32,11 @@ export default{
     }
   },
   mounted () {
-    axios
-      .get('http://localhost:8000/api/incidence-type/'+ this.$route.params.id )
-      .then(response => {
-        this.item = response.data 
-      });
+    IncidenceService.getById(this.$route.params.id)
+    .then(response => {
+      console.log(response.data.data)
+      this.item = response.data.data
+    });
   }
 
 }

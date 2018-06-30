@@ -22,20 +22,23 @@ window.Vue = require('vue');
 import App from './admin/App.vue'
 import VueRouter from 'vue-router';
 import { routes } from './admin/router/routes';
-
 import VuejsDialog from "vuejs-dialog";
-
-
 import bPagination from 'bootstrap-vue/es/components/pagination/pagination'
 import bCol from 'bootstrap-vue/es/components/layout/col'
 import bTable from 'bootstrap-vue/es/components/table/table'
 import bTooltip from 'bootstrap-vue/es/components/tooltip/tooltip'
 import bPopover from 'bootstrap-vue/es/components/popover/popover'
+import Vuex from 'vuex';
 
+var moment = require('moment');
+
+Vue.filter('date2', function (value) {
+  return moment(value).format("DD/MM/YYYY");
+})
 
 Vue.use(VuejsDialog)
 Vue.use(VueRouter);
-//Vue.use(BootstrapVue);
+
 Vue.component('b-pagination', bPagination);
 Vue.component('b-col', bCol);
 Vue.component('b-table', bTable);
@@ -43,8 +46,14 @@ Vue.component('b-tooltlip', bTooltip);
 
 Vue.component('b-popover', bPopover);
 
-//Vue.directive('b-tooltlip-v', bTooltipDirective);
 
+Vue.use(Vuex);
+
+export const store = new Vuex.Store({
+  state:{
+    isLoggedIn: !! window.localStorage.getItem('token')
+  }
+});
 
 const router = new VueRouter({
     routes,
@@ -53,9 +62,28 @@ const router = new VueRouter({
     mode: 'hash'
 });
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (window.localStorage.getItem('token') === null ) {
+      next({
+        path: '/auth/login',
+        query: {
+          redirect: to.fullPath,
+        },
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+})
+
+
 const app = new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App),
   components: { App }
 }); 

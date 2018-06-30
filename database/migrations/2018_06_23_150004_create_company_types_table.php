@@ -15,9 +15,10 @@ class CreateCompanyTypesTable extends Migration
     {
         Schema::create('company_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type',25)->unique();
+            $table->string('type',25);
             $table->softDeletes();
             $table->timestamps();
+            $table->unique(['type','deleted_at']);
         });
     }
 

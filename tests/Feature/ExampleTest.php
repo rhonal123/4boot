@@ -16,13 +16,8 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $response = $this->get('/');
 
-        $response->assertStatus(200);
-
-        
         $response = $this->json('POST', '/api/incidence-type', ['type' => 'Sally y Molly']);
-        print_r($response->content());
         $response
         ->assertStatus(201)
         ->assertJson([

@@ -4,6 +4,7 @@ namespace App;
 use App\Company;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class Client extends Model
 {   
@@ -20,7 +21,7 @@ class Client extends Model
 
     public function company()
     {
-        return $this->belongsTo(Comapny::class);
+        return $this->belongsTo(Company::class);
     }
 
 }

@@ -59,9 +59,10 @@ const items = {
   }
 };
 
-const loadItems = (search,page = 1) => axios.get('http://localhost:8000/api/incidence-type',{ params:{ page: page, search: search }});
+//const loadItems = (search,page = 1) => axios.get('http://localhost:8000/api/incidence-type',{ params:{ page: page, search: search }});
 
 import AddComponent from '../components/AddComponent.vue'
+const IncidenceService = require('./../service/incidence-type-service');
 
 export default {
   name: 'incidence-type',
@@ -78,25 +79,28 @@ export default {
   },
   methods:{
     load: function(page) {
-      loadItems(this.search,page).then(response => this.items = response.data );
+      IncidenceService.index(this.search,page).then(response => this.items = response.data );
     },
     eliminar: function(element){
       this.$dialog.confirm('Eliminar',{ okText: "Eliminar",  loader: true,  verification: 'continue'})
       .then(dialog => {
         axios.delete(this.items.meta.path + "/" + element.id).then(
           data => {
-            loadItems(this.search,this.items.current_page).then(response => this.items = response.data )
+            console.log("por aqui")
+            IncidenceService.index(this.search,this.items.current_page).then(response => this.items = response.data );
             dialog.close();
+            console.log("por aqui222")
           })
           .catch( c => {
+            console.log("por aqui 333")
+            console.error(c);
             dialog.close();
-            console.log("errror")
           });
       });
     }
   },
   mounted () {
-    loadItems(this.search).then(response => this.items = response.data );
+    IncidenceService.index(this.search).then(response => this.items = response.data );
   }
 }
 </script>

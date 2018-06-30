@@ -18,7 +18,7 @@ class Question extends Model
         return $this->belongsTo(Client::class);
     }
 
-    public function replies()
+    public function reply()
     {
         return $this->hasOne(Reply::class);
     }

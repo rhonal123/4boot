@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API;
-use Log;
+
 use App\IncidenceType;
 use App\Http\Resources\IncidenceTypeResource;
 use App\Http\Requests\IncidenceTypeRequest;
@@ -17,8 +17,7 @@ class IncidenceTypeController extends Controller
      */
     public function index(Request $request)
     {   
-        Log::info("Soy un Señor test :-d ");
-        $type = $request->input('type');
+        $type = $request->input('search');
         $query = IncidenceType::when($type, function($query) use ($type){
             return $query->where('type','like','%'. $type .'%');
         })

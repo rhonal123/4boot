@@ -18,5 +18,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::apiResource('incidence-type', 'API\IncidenceTypeController');
 
+Route::post('login', 'API\AuthController@login');
+
+Route::group(['middleware' => 'auth:api'], function () {
+	Route::delete('logout', 'API\AuthController@logout');
+	Route::apiResource('incidence-type', 'API\IncidenceTypeController');
+	Route::apiResource('requeriment-type', 'API\RequerimentTypeController');
+	Route::apiResource('company-type', 'API\CompanyTypeController');
+	Route::apiResource('document-type', 'API\DocumentTypeController');
+	Route::apiResource('reply', 'API\ReplyController');
+	Route::apiResource('question', 'API\QuestionController');
+});

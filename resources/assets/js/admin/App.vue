@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-      <div class="admin-container">
+    <auth-layout v-if="isAuth"></auth-layout>
+      <div class="admin-container" v-else>
         <Sidebar :navItems="nav"/>
         <div id="right-panel" class="right-panel">
           <Header/>
@@ -18,7 +19,7 @@
 import nav from './nav'
 import Header from './components/Header.vue'
 import Sidebar from './components/Sidebar.vue'
-//import AuthLayout from './layouts/AuthLayout.vue';
+import AuthLayout from './layouts/AuthLayout.vue';
 
 export default {
   data () {
@@ -27,7 +28,7 @@ export default {
     }
   },
   components: {
-//    AuthLayout, 
+    AuthLayout, 
     Header,
     Sidebar
   },

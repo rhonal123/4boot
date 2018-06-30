@@ -3,7 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
- 
+use Illuminate\Validation\Rule;
+
 class IncidenceTypeRequest extends FormRequest
 {
     /**
@@ -26,11 +27,15 @@ class IncidenceTypeRequest extends FormRequest
         $type = $this->route('incidence_type');
         if($type){
             return [
-              'type' => 'required|max:25|unique:incidence_types,id,'.$type->id,
+              'type' => ['required','max:25', Rule::unique('incidence_types')->where(function($query) use(&$type){
+                return $query->whereNull('deleted_at')->where('id','!=',$type->id);
+              })]
             ];
         }
         return [
-          'type' => 'required|unique:incidence_types|max:25'
+          'type' => ['required','max:25', Rule::unique('incidence_types')->where(function($query){
+            return $query->whereNull('deleted_at');
+          })]
         ];
     }
 }

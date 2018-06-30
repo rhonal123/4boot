@@ -6,7 +6,6 @@ const IncidenceType = resolve => {
     require.ensure(['../views/IncidenceType.vue'], ()=>{ resolve(require('../views/IncidenceType.vue')); }); 
 };
 
-
 const IncidenceTypeDetail = resolve => { 
     require.ensure(['../views/incidencetype/IncidenceTypeDetail.vue'], ()=>{ resolve(require('../views/incidencetype/IncidenceTypeDetail.vue')); }); 
 };
@@ -15,7 +14,59 @@ const IncidenceTypeEdit = resolve => {
     require.ensure(['../views/incidencetype/IncidenceTypeEdit.vue'], ()=>{ resolve(require('../views/incidencetype/IncidenceTypeEdit.vue')); }); 
 };
 
+const CompanyType = resolve => { 
+    require.ensure(['../views/CompanyType.vue'], ()=>{ resolve(require('../views/CompanyType.vue')); }); 
+};
 
+const CompanyTypeDetail = resolve => { 
+    require.ensure(['../views/company-type/CompanyTypeDetail.vue'], ()=>{ resolve(require('../views/company-type/CompanyTypeDetail.vue')); }); 
+};
+
+const CompanyTypeEdit = resolve => { 
+    require.ensure(['../views/company-type/CompanyTypeEdit.vue'], ()=>{ resolve(require('../views/company-type/CompanyTypeEdit.vue')); }); 
+};
+
+
+
+
+const DocumentType = resolve => { 
+    require.ensure(['../views/DocumentType.vue'], ()=>{ resolve(require('../views/DocumentType.vue')); }); 
+};
+
+const DocumentTypeDetail = resolve => { 
+    require.ensure(['../views/document-type/DocumentTypeDetail.vue'], ()=>{ resolve(require('../views/document-type/DocumentTypeDetail.vue')); }); 
+};
+
+const DocumentTypeEdit = resolve => { 
+    require.ensure(['../views/document-type/DocumentTypeEdit.vue'], ()=>{ resolve(require('../views/document-type/DocumentTypeEdit.vue')); }); 
+};
+
+
+
+const RequerimentType = resolve => { 
+    require.ensure(['../views/RequerimentType.vue'], ()=>{ resolve(require('../views/RequerimentType.vue')); }); 
+};
+
+const RequerimentTypeDetail = resolve => { 
+    require.ensure(['../views/requeriment-type/RequerimentTypeDetail.vue'], ()=>{ resolve(require('../views/requeriment-type/RequerimentTypeDetail.vue')); }); 
+};
+
+const RequerimentTypeEdit = resolve => { 
+    require.ensure(['../views/requeriment-type/RequerimentTypeEdit.vue'], ()=>{ resolve(require('../views/requeriment-type/RequerimentTypeEdit.vue')); }); 
+};
+
+const Login = resolve => { 
+    require.ensure(['../Login.vue'], ()=>{ resolve(require('../Login.vue')); }); 
+}
+
+
+const Question = resolve => { 
+    require.ensure(['../views/Question.vue'], ()=>{ resolve(require('../views/Question.vue')); }); 
+};
+
+const QuestionEdit = resolve => { 
+    require.ensure(['../views/question/QuestionEdit.vue'], ()=>{ resolve(require('../views/question/QuestionEdit.vue')); }); 
+};
 
 /*
 
@@ -64,31 +115,101 @@ export const routes = [
         name: 'home',
         components:{
             default: Dashboard
-        }
+        },
+        meta: { requiresAuth: true} 
+    },
+    /*************************************************************/
+    {   
+        path : '/incidence-type', name: 'incidenceType', component: IncidenceType, meta: { requiresAuth: true} 
     },
     {   
-        path : '/incidence-type',
-        name: 'incidenceType',
-        component: IncidenceType
+        path: '/incidence-type-new', name: 'incidence-type-new', component: IncidenceTypeEdit , meta: { requiresAuth: true} 
     },
-    {   path: '/incidence-type/show/:id',
-        name: 'incidence-type-detail',
-        component: IncidenceTypeDetail 
+    {   
+        path: '/incidence-type/:id', name: 'incidence-type-edit', component: IncidenceTypeEdit , meta: { requiresAuth: true} 
     },
-    {   path: '/incidence-type/:id',
-        name: 'incidence-type-edit',
-        component: IncidenceTypeEdit 
+    {   
+        path: '/incidence-type/show/:id', name: 'incidence-type-detail', component: IncidenceTypeDetail , meta: { requiresAuth: true} 
     },
-    {   path: '/incidence-type-new',
-        name: 'incidence-type-new',
-        component: IncidenceTypeEdit 
+
+    /*************************************************************/
+    {   
+        path : '/company-type', name: 'company-type', component: CompanyType, meta: { requiresAuth: true} 
     },
+    {   
+        path: '/company-type-new', name: 'company-type-new', component: CompanyTypeEdit , meta: { requiresAuth: true} 
+    },
+    {   
+        path: '/company-type/:id', name: 'company-type-edit', component: CompanyTypeEdit , meta: { requiresAuth: true} 
+    },
+    {   
+        path: '/company-type/show/:id', name: 'company-type-detail', component: CompanyTypeDetail , meta: { requiresAuth: true} 
+    },
+
+    /*************************************************************/
+    {   
+        path : '/document-type', name: 'document-type', component: DocumentType, meta: { requiresAuth: true} 
+    },
+    {   
+        path: '/document-type-new', name: 'document-type-new', component: DocumentTypeEdit, meta: { requiresAuth: true}  
+    },
+    {   
+        path: '/document-type/:id', name: 'document-type-edit', component: DocumentTypeEdit, meta: { requiresAuth: true}  
+    },
+    {   
+        path: '/document-type/show/:id', name: 'document-type-detail', component: DocumentTypeDetail, meta: { requiresAuth: true}  
+    },
+
+
+    /*************************************************************/
+    {   
+        path : '/requeriment-type', name: 'requeriment-type', component: RequerimentType, meta: { requiresAuth: true} 
+    },
+    {   
+        path: '/requeriment-type-new', name: 'requeriment-type-new', component: RequerimentTypeEdit , meta: { requiresAuth: true} 
+    },
+    {   
+        path: '/requeriment-type/:id', name: 'requeriment-type-edit', component: RequerimentTypeEdit, meta: { requiresAuth: true}  
+    },
+    {   
+        path: '/requeriment-type/show/:id', name: 'requeriment-type-detail', component: RequerimentTypeDetail, meta: { requiresAuth: true}  
+    },
+
+    /**********************************************************************/
+    {   
+        path : '/question', name: 'question', component: Question, meta: { requiresAuth: true} 
+    },
+    {   
+        path: '/question/:id', name: 'question-edit', component: QuestionEdit, meta: { requiresAuth: true}  
+    },
+
+
+
+    /**********************************************************************/
+            {
+                path: '/auth/login',
+                component: Login,
+               name: 'login',
+                meta: {
+                    default: false,
+                    title: 'Login'
+                }
+     },
+
+
     {
-        path : 'dashboard',
+        path : 'dashboard', 
         components:{
             default: Dashboard
         }
     },
+
+
+    
+
+
+
+
 /*
     // // UI Components
     { path : '/components/buttons', name: 'buttons', component: Buttons },
