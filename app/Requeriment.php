@@ -12,7 +12,7 @@ class Requeriment extends Model
 
     protected $fillable = ['name','code','required','requeriment_type_id'];
     protected $hidden = ['created_at','updated_at','delete_at'];
-
+    protected $casts = ['required' => 'boolean'];
     public function requerimentType()
     {
         return $this->belongsTo(RequerimentType::class);

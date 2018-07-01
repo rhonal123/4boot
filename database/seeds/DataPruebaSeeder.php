@@ -2,13 +2,15 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-
+ 
 use App\IncidenceType;
 use App\CompanyType;
 use App\Company;
 use App\Client;
 use App\Question;
 use App\Role;
+use App\Requeriment;
+use App\RequerimentType;
 use App\User;
 
 class DataPruebaSeeder extends Seeder
@@ -20,6 +22,7 @@ class DataPruebaSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker\Factory::create();
         IncidenceType::create(['type' => 'Documento Dañado']);
         IncidenceType::create(['type' => 'Imagen Defectuosa']);
         IncidenceType::create(['type' => 'Falta de documento']);
@@ -36,48 +39,28 @@ class DataPruebaSeeder extends Seeder
                 'identity' => 'C-000'.$i,
                 'address' =>'adress ',
                 'phone' => 'phone',
-                'company_type_id' => $c1->id]);
-        }
-
-        for ($i=10; $i < 20; $i++) { 
-            Company::create([
-                'name' => 'company n° '. $i, 
-                'identity' => 'C-000'.$i,
-                'address' =>'adress ',
-                'phone' => 'phone',
-                'company_type_id' => $c2->id]);
-        }
-
-
-        for ($i=20; $i < 30; $i++) { 
-            Company::create([
-                'name' => 'company n° '. $i, 
-                'identity' => 'C-000'.$i,
-                'address' =>'adress ',
-                'phone' => 'phone',
-                'company_type_id' => $c3->id]);
-        }
-
-        for ($i=30; $i < 40; $i++) { 
-            Company::create([
-                'name' => 'company n° '. $i, 
-                'identity' => 'C-000'.$i,
-                'address' =>'adress ',
-                'phone' => 'phone',
-                'company_type_id' => $c4->id]);
+                'company_type_id' => $c1->id,
+                'email' => $faker->email,
+                'catalogo_path' => $faker->md5() ."pdf"
+                ]);
         }
 
         $client=  Client::create(['username' => 'client 1','password' => '1234','company_id' => Company::first()->id ]);
-        Question::create(['question' => 'Question Number 1','client_id' => $client->id ]);
-        Question::create(['question' => 'Question Number 2','client_id' => $client->id ]);
-        Question::create(['question' => 'Question Number 3','client_id' => $client->id ]);
-        Question::create(['question' => 'Question Number 4','client_id' => $client->id ]);
-        Question::create(['question' => 'Question Number 5','client_id' => $client->id ]);
-        Question::create(['question' => 'Question Number 6','client_id' => $client->id ]);
-        Question::create(['question' => 'Question Number 7','client_id' => $client->id ]);
-
-
-        $roleAdmin = Role::create(['role' => 'Administrador ']);
+        
+        for($i = 0; $i < 25; $i++){
+            Question::create([
+                'question' => $faker->text(),
+                'client_id' => $faker->randomElement(Client::pluck('id')->toArray())
+            ]);
+            
+            Requeriment::create([
+                'name' => $faker->name,
+                'code'  => $faker->numerify('R'.$faker->randomLetter().'-###'),
+                'required'  => $faker->boolean(),
+                'requeriment_type_id'  => factory(RequerimentType::class)->create()->id,                
+            ]);
+        }
+        $roleAdmin = Role::create(['role' => 'Administrador']);
         $user = User::create([
             'role_id' => $roleAdmin->id,
             'surname' => 'Rhonal',

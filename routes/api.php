@@ -17,14 +17,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-
 Route::post('login', 'API\AuthController@login');
 
 Route::group(['middleware' => 'auth:api'], function () {
 	Route::delete('logout', 'API\AuthController@logout');
 	Route::apiResource('incidence-type', 'API\IncidenceTypeController');
 	Route::apiResource('requeriment-type', 'API\RequerimentTypeController');
+	Route::apiResource('requeriment', 'API\RequerimentController');
 	Route::apiResource('company-type', 'API\CompanyTypeController');
 	Route::apiResource('document-type', 'API\DocumentTypeController');
 	Route::apiResource('reply', 'API\ReplyController');

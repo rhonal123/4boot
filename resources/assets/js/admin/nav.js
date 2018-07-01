@@ -44,6 +44,11 @@ export default {
           name: 'Tipo de Requerimiento',
           url: '/requeriment-type',
           icon: 'fa fa-id-badge',
+        },
+        {
+          name: 'Requerimiento',
+          url: '/requeriment',
+          icon: 'fa fa-id-badge',
         }
       ]
     },

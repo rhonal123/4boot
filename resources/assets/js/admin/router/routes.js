@@ -68,6 +68,22 @@ const QuestionEdit = resolve => {
     require.ensure(['../views/question/QuestionEdit.vue'], ()=>{ resolve(require('../views/question/QuestionEdit.vue')); }); 
 };
 
+
+
+
+const Requeriment = resolve => { 
+    require.ensure(['../views/Requeriment.vue'], ()=>{ resolve(require('../views/Requeriment.vue')); }); 
+};
+
+const RequerimentDetail = resolve => { 
+    require.ensure(['../views/requeriment/RequerimentDetail.vue'], ()=>{ resolve(require('../views/requeriment/RequerimentDetail.vue')); }); 
+};
+
+const RequerimentEdit = resolve => { 
+    require.ensure(['../views/requeriment/RequerimentEdit.vue'], ()=>{ resolve(require('../views/requeriment/RequerimentEdit.vue')); }); 
+};
+
+
 /*
 
 // UI Components
@@ -160,7 +176,6 @@ export const routes = [
         path: '/document-type/show/:id', name: 'document-type-detail', component: DocumentTypeDetail, meta: { requiresAuth: true}  
     },
 
-
     /*************************************************************/
     {   
         path : '/requeriment-type', name: 'requeriment-type', component: RequerimentType, meta: { requiresAuth: true} 
@@ -173,6 +188,22 @@ export const routes = [
     },
     {   
         path: '/requeriment-type/show/:id', name: 'requeriment-type-detail', component: RequerimentTypeDetail, meta: { requiresAuth: true}  
+    },
+
+
+
+    /*************************************************************/
+    {   
+        path : '/requeriment', name: 'requeriment', component: Requeriment, meta: { requiresAuth: true} 
+    },
+    {   
+        path: '/requeriment-new', name: 'requeriment-new', component: RequerimentEdit , meta: { requiresAuth: true} 
+    },
+    {   
+        path: '/requeriment/:id', name: 'requeriment-edit', component: RequerimentEdit, meta: { requiresAuth: true}  
+    },
+    {   
+        path: '/requeriment/show/:id', name: 'requeriment-detail', component: RequerimentDetail, meta: { requiresAuth: true}  
     },
 
     /**********************************************************************/

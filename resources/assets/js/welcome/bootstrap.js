@@ -9,9 +9,9 @@ window.Popper = require('popper.js').default;
  */
 
 try {
-//    window.$ = window.jQuery = require('jquery');
+    window.$ = window.jQuery = require('jquery');
 
-//    require('bootstrap');
+    require('bootstrap');
 } catch (e) {}
 
 /**
@@ -23,29 +23,6 @@ try {
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-window.axios.interceptors.request.use(
-  config => {
-  	if(window.localStorage.getItem('token')){
-	    config.headers.Authorization = `Bearer ${JSON.parse(localStorage.token).token.accessToken}`;
-	}
-    return config;
-  },
-  error => Promise.reject(error)
-);
-
-window.axios.interceptors.response.use(
-  function (response) {
-    return response;
-  },
-  function (error) {
-    console.log("Tenemos unb errorr ",error.response.status)
-    if(error.response.status == 401){
-    	localStorage.clear();
-    	location.reload();
-    }
-    return Promise.reject(error);
-  });
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that

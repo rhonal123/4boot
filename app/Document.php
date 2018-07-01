@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Document extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['name','document_type_id','status','owner_id'];
+    protected $fillable = ['name','document_type_id','status','owner_id','email','catalogo_path'];
     protected $hidden = ['created_at','updated_at','delete_at'];
 
     public function documentType()

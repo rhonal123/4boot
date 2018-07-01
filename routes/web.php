@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/','WelcomeController@index');
-
+Route::get('/','WelcomeController@index')->name('root');
 Route::get('admin','AdminController@index');
+
+
+Route::get('/company/register', 'RegisterCompanyController@index')->name('register.company');
+Route::post('/company/register', 'RegisterCompanyController@store');

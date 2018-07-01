@@ -20,7 +20,12 @@ class RequerimentTypeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    {   
+        if($request->input('page') == 'all')
+        {
+            return RequerimentTypeResource::collection(RequerimentType::orderBy('id','desc')->get());
+        }
+        
         $type = $request->input('search');
         $query = RequerimentType::when($type, function($query) use ($type){
             return $query->where('type','like','%'. $type .'%');

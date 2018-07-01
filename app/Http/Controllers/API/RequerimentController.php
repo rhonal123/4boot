@@ -6,7 +6,6 @@ use App\Requeriment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Requeriment;
 use App\Http\Resources\RequerimentResource;
 use App\Http\Requests\RequerimentRequest;
 
@@ -24,6 +23,7 @@ class RequerimentController extends Controller
         $query = Requeriment::when($search, function($query) use ($search){
             return $query->where('name','like','%'. $search .'%');
         })
+        ->orderBy('code','desc')
         ->orderBy('id','desc');
         return RequerimentResource::collection($query->paginate(12));
     }
@@ -37,43 +37,43 @@ class RequerimentController extends Controller
     public function store(RequerimentRequest $request)
     {
         $validated = $request->validated();
-        return response()->json(Requeriment::create($validated),201);
+        return  new RequerimentResource(Requeriment::create($validated),201); //response()->json(Requeriment::create($validated),201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Requeriment  $requerimentType
+     * @param  \App\Requeriment  $requeriment
      * @return \Illuminate\Http\Response
      */
-    public function show(Requeriment $requerimentType)
+    public function show(Requeriment $requeriment)
     {
-        return new RequerimentResource($requerimentType);
+        return new RequerimentResource($requeriment);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Requeriment  $requerimentType
+     * @param  \App\Requeriment  $requeriment
      * @return \Illuminate\Http\Response
      */
-    public function update(RequerimentRequest $request, Requeriment $requerimentType)
+    public function update(RequerimentRequest $request, Requeriment $requeriment)
     {
         $validated = $request->validated();
-        $requerimentType->update($validated);
-        return response()->json($requerimentType);
+        $requeriment->update($validated);
+        return new RequerimentResource($requeriment);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Requeriment  $requerimentType
+     * @param  \App\Requeriment  $requeriment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Requeriment $requerimentType)
+    public function destroy(Requeriment $requeriment)
     {
-        $requerimentType->delete();
+        $requeriment->delete();
         return response()->json([],204);
     }
 }
