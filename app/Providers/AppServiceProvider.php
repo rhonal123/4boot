@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Providers;
-
+ 
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        $this->app['request']->server->set('HTTPS', $this->app->environment() == 'production');
     }
 
     /**
@@ -23,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 }
