@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{asset(mix('css/welcome.css'))}}">
+    <link rel="stylesheet" href="{{asset('css/welcome.css')}}">
 
 </head>
 
@@ -38,7 +38,7 @@
     </footer>
 
     <!-- jQuery and Bootstrap -->
-    <script src="{{asset(mix('js/welcome.js'))}}"></script>
+    <script src="{{asset('js/welcome.js')}}"></script>
     @yield('script')
 
 </body>
