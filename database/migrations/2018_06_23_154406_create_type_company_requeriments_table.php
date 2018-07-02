@@ -13,8 +13,7 @@ class CreateTypeCompanyRequerimentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_company_requeriments', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('company_type_requeriment', function (Blueprint $table) {
 
             $table->unsignedInteger('requeriment_id');
             $table->foreign('requeriment_id')->references('id')->on('requeriments');
@@ -22,18 +21,17 @@ class CreateTypeCompanyRequerimentsTable extends Migration
             $table->unsignedInteger('company_type_id');
             $table->foreign('company_type_id')->references('id')->on('company_types');
 
-            $table->softDeletes();  
-            $table->timestamps();
+            $table->primary(['requeriment_id', 'company_type_id']); 
         });
     }
 
-    /**
+    /** 4boot_test.
      * Reverse the migrations.
      *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('type_company_requeriments');
+        Schema::dropIfExists('company_type_requeriment');
     }
 }

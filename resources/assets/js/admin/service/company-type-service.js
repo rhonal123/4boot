@@ -19,12 +19,14 @@ class CompanyTypeService {
   static save(data) {
   	if(data.id){
 	    return axios.put(`${url}/${data.id}`,{
-	    	type: data.type
+	    	type: data.type,
+        requeriments: data.requeriments,
 	    });
 	}
 	else{
 	    return axios.post(`${url}`,{
-	    	type: data.type
+	    	type: data.type,
+        requeriments: data.requeriments,
 	    });
 	}
   }

@@ -19,6 +19,11 @@ class RequerimentController extends Controller
      */
     public function index(Request $request)
     {
+        if($request->input('page') == 'all')
+        {
+            return RequerimentResource::collection(Requeriment::orderBy('id','desc')->get());
+        }
+        
         $search = $request->input('search');
         $query = Requeriment::when($search, function($query) use ($search){
             return $query->where('name','like','%'. $search .'%');

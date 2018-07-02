@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
+use App\Requeriment;
 use App\CompanyType;
 use App\Http\Resources\CompanyTypeResource;
+use App\Http\Resources\CompanyTypeRequerimentResource;
 use App\Http\Requests\CompanyTypeRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -34,7 +35,10 @@ class CompanyTypeController extends Controller
     public function store(CompanyTypeRequest $request)
     {
         $validated = $request->validated();
-        return response()->json(new CompanyTypeResource(CompanyType::create($validated)),201);
+        $company = CompanyType::create($validated);
+        $requeriments = array_map(function(&$e) { return $e['id'];} ,$validated['requeriments']);
+        $company->requeriments()->sync($requeriments);
+        return response()->json(new CompanyTypeRequerimentResource($company),201);
     }
 
     /**
@@ -45,7 +49,7 @@ class CompanyTypeController extends Controller
      */
     public function show(CompanyType $companyType)
     {
-        return new CompanyTypeResource($companyType);
+        return new CompanyTypeRequerimentResource($companyType);
     }
 
     /**
@@ -59,7 +63,9 @@ class CompanyTypeController extends Controller
     {
         $validated = $request->validated();
         $companyType->update($validated);
-        return response()->json($companyType);
+        $requeriments = array_map(function(&$e) { return $e['id'];} ,$validated['requeriments']);
+        $companyType->requeriments()->sync($requeriments);
+        return new CompanyTypeRequerimentResource($companyType);
     }
 
     /**
@@ -73,4 +79,32 @@ class CompanyTypeController extends Controller
         $companyType->delete();
         return response()->json([],204);
     }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\CompanyType  $companyType
+     * @return \Illuminate\Http\Response
+     */
+    public function requerimentAdd(CompanyType $companyType, Requeriment $requeriment)
+    {
+        $companyType->requeriments()->attach($requeriment);
+        return new CompanyTypeRequerimentResource($companyType);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\CompanyType  $companyType
+     * @return \Illuminate\Http\Response
+     */
+    public function requerimentRemove(CompanyType $companyType, Requeriment $requeriment)
+    {
+        $companyType->requeriments()->delete($requeriment);
+        return new CompanyTypeRequerimentResource($companyType);
+    }
+
+
+
 }

@@ -3,6 +3,7 @@
 namespace Tests\Unit\controllers;
 use App\CompanyType;
 use App\User;
+use App\Requeriment;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -30,7 +31,18 @@ class CompanyTypeControllerTest extends TestCase
     public function testCreateCompany()
     {
         Passport::actingAs(factory(User::class)->create(),['create-servers']);        
-        $response = $this->json('POST',route('company-type.store'),['type' => 'Company A']);
+        $r1 = $requeriment = factory(Requeriment::class)->create();
+        $r2 = $requeriment = factory(Requeriment::class)->create();
+        $r3 = $requeriment = factory(Requeriment::class)->create();
+        $response = $this->json('POST',route('company-type.store'),
+            [
+                'type' => 'Company A',
+                'requeriments' => [
+                    ['id'=> $r1->id],
+                    ['id'=> $r2->id],
+                    ['id'=> $r3->id],
+                ]
+            ]);
         $response->assertStatus(201);
     }
 
@@ -46,25 +58,41 @@ class CompanyTypeControllerTest extends TestCase
         $response = $this->json('GET',route('company-type.show',['company_type' => $company->id]));
         $response->assertStatus(200)->assertJson([
             'data' => [
+                'id' => $company->id,
             	'type' => $company->type,
-            	'id' => $company->id
+                'requeriments' => []
             ],
         ]);
     }
 
-
     public function testUpdateCompany()
     {
         Passport::actingAs(factory(User::class)->create(),['create-servers']);        
+        $r1 = $requeriment = factory(Requeriment::class)->create();
+        $r2 = $requeriment = factory(Requeriment::class)->create();
+        $r3 = $requeriment = factory(Requeriment::class)->create();
         $company = factory(CompanyType::class)->create();
         $this->assertNotNull($company->id);
-        $response = $this->json('PUT',route('company-type.update',['company_type' => $company->id]), ['type' => 'Actualizacion']);
-        $response->assertStatus(200)->assertJson([
-           	'type' => 'Actualizacion',
-          	'id' => $company->id
-        ]);
+        $response = $this->json('PUT',
+            route('company-type.update',['company_type' => $company->id]),
+            [
+                'type' => 'Company B',
+                'requeriments' => [
+                    ['id'=> $r1->id],
+                    ['id'=> $r2->id],
+                    ['id'=> $r3->id],
+                ]
+            ]);
+        $response->assertStatus(200); //->assertJson([
+        //    'data' => [
+        //        'id' => $company->id,
+        //        'type' => $company->type,
+        //        'requeriments' => []
+        //    ],
+        //]);
     }
-
+    
+    /*
     public function testDeleteCompany()
     {
         Passport::actingAs(factory(User::class)->create(),['create-servers']);        
@@ -74,5 +102,19 @@ class CompanyTypeControllerTest extends TestCase
         $response->assertStatus(204);
     }
 
+
+    public function testAddRequerimentCompany()
+    {
+        Passport::actingAs(factory(User::class)->create(),['create-servers']);        
+        $company = factory(CompanyType::class)->create();
+        $requeriment = factory(Requeriment::class)->create();
+        $response = $this->json('POST',route('company-type.add-requeriment',[
+            'document_type' => $company->id, 
+            'requeriment' => $requeriment->id
+            ]));
+        echo $response->content();
+        $response->assertStatus(200);
+    }
+    */
 
 }

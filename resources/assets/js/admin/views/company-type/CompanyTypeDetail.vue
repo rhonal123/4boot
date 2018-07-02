@@ -9,6 +9,18 @@
 
   <div class="card-body">
     <p class="font-weight-bold">Tipo Empresa : {{ item.type }}</p>
+    <h4 class="mt-4 mb-2 p-2 text-white bg-primary">Documentos Requeridos</h4>
+    <div class="table-responsive">
+      <b-table striped hover show-empty stacked="sm"
+          :items="item.requeriments"
+          :small="true"
+          :fields="fields">
+        <template slot="required" slot-scope="row">
+            <span v-if="row.item.required">SI</span>
+            <span v-else="row.item.required">No</span>
+        </template>
+      </b-table>
+    </div>
   </div>
 </div>
 </template>
@@ -19,7 +31,8 @@ const service = require('./../../service/company-type-service');
 
 const item = {
   data: { 
-    type: {}
+    type: '',
+    requeriments: []
   }
 };
 
@@ -29,6 +42,11 @@ export default{
   data () {
     return {
       item: item,
+      fields: [
+        { key: 'code', label: 'Codigo', sortable: true},
+        { key: 'name', label: 'Requerimiento', sortable: true},
+        { key: 'required', label: 'Obligatorio', sortable: true},
+      ],
     }
   },
   mounted () {

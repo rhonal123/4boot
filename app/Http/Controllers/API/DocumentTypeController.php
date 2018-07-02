@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\DocumentType;
+use App\Requeriment;
 use App\Http\Resources\DocumentTypeResource;
 use App\Http\Requests\DocumentTypeRequest;
 use Illuminate\Http\Request;
