@@ -39,8 +39,7 @@ window.axios.interceptors.response.use(
     return response;
   },
   function (error) {
-    console.log("Tenemos unb errorr ",error.response.status)
-    if(error.response.status == 401){
+     if(error.response.status == 401){
     	localStorage.clear();
     	location.reload();
     }

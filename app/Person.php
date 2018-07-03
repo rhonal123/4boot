@@ -8,7 +8,6 @@ use App\Company;
 
 class Person extends Model
 {
-    use SoftDeletes;
     protected $fillable = ['name','email','phone','role','company_id'];
     protected $hidden = ['created_at','updated_at','delete_at'];
 

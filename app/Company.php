@@ -2,7 +2,7 @@
 
 namespace App;
 use App\CustomerCompany;
-use App\People;
+use App\Person;
 use App\CompanyType;
 use Log;
 use Illuminate\Database\Eloquent\Model;
@@ -23,7 +23,7 @@ class Company extends Model
 
     public function people()
     {
-        return $this->hasMany(People::class);
+        return $this->hasMany(Person::class);
     }
 
     public function companyType()
@@ -36,10 +36,16 @@ class Company extends Model
     {
        try
        {
-         $file = $attributes['catalogo_path'];
-         $path = $file->store('companies');
-         $attributes['catalogo_path'] = $path;
-         return self::create($attributes);
+          $companyAttributes = $attributes['company'];
+          $file = $companyAttributes['catalogo_path'];
+          $path = $file->store('companies');
+          $companyAttributes['catalogo_path'] = $path;
+          $company = self::create($companyAttributes);
+          $company->people()->create($attributes['contact']);
+          foreach ($attributes['customers'] as $value) {
+            $company->customer()->create($value);
+          }
+          return $company;
        } 
        catch (Exception $e)
        {

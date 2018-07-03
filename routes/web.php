@@ -17,3 +17,4 @@ Route::get('admin','AdminController@index');
 
 Route::get('/company/register', 'RegisterCompanyController@index')->name('register.company');
 Route::post('/company/register', 'RegisterCompanyController@store');
+Route::post('/company/companytypes', 'RegisterCompanyController@companyTypes')->name('register.companytype');

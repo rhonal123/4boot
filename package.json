@@ -28,6 +28,7 @@
         "is-url-external": "^1.0.3",
         "moment": "^2.22.2",
         "normalize.css": "^8.0.0",
+        "owl.carousel": "^2.3.4",
         "vue-router": "^3.0.1",
         "vuejs-dialog": "^0.9.0",
         "vuex": "^3.0.1",

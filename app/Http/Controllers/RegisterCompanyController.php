@@ -9,6 +9,9 @@ use App\Http\Requests\RegisterCompanyRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\QueryException;
 use Exception;
+use App\Http\Resources\RegisterCompanyResource;
+use App\Http\Resources\CompanyTypeResource;
+
 class RegisterCompanyController extends Controller
 {
 
@@ -16,12 +19,17 @@ class RegisterCompanyController extends Controller
     {
         $validated = $request->validated();
         $company = Company::createWithFile($validated);
-        return view('welcome.registed', compact('company'));
+        return new RegisterCompanyResource($company);
     }
 
     protected function index()
     {
         $types = CompanyType::all();
         return view('welcome.register',compact('types')); 
+    }
+
+    protected function companyTypes()
+    {
+        return CompanyTypeResource::collection(CompanyType::all());
     }
 }

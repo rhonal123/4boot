@@ -1,4 +1,8 @@
 @extends('welcome.app')
+
+
+@section('content')
+
 <div class="section bg-gradient" >  
 	<div class="container">
 		<div>
@@ -15,8 +19,7 @@
 			  </div>
 			</div>
 		</div>		
-	</div>
-</div>
 
 
 
+@endsection

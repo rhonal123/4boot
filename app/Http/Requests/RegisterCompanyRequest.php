@@ -24,13 +24,19 @@ class RegisterCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
-            'identity' => ['required'],
-            'address' => ['required'],
-            'phone' => ['required'],
-            'email' => ['required'],
-            'catalogo_path'  => ['required','max:2048'],
-            'company_type_id'  => ['required','exists:company_types,id'],
+            'company.name' => ['required','max:50'],
+            'company.identity' => ['required','max:50'],
+            'company.address' => ['required','max:300'],
+            'company.phone' => ['required','max:15'],
+            'company.email' => ['required','max:50'],
+            'company.catalogo_path'  => ['required','max:2048'],
+            'company.company_type_id'  => ['required','exists:company_types,id'],
+            'contact.name'  => ['required','max:50'],
+            'contact.email' => ['required','max:50'],
+            'contact.phone' => ['required','max:15'],
+            'contact.role' => ['required','max:50'],
+            'customers.*.name' => ['max:50'],
+            'customers.*.phone' => ['max:15']
         ];
     }
 }

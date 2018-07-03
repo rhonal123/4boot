@@ -15,13 +15,12 @@ class CreatePeopleTable extends Migration
     {
         Schema::create('people', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',50);
-            $table->string('email',50);
-            $table->string('phone',15);
-            $table->string('role',50);
+            $table->string('name',50)->nullable();
+            $table->string('email',50)->nullable();
+            $table->string('phone',15)->nullable();
+            $table->string('role',50)->nullable();
             $table->unsignedInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-            $table->softDeletes();
             $table->timestamps();
         });
     }
