@@ -24,11 +24,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 	Route::apiResource('incidence-type', 'API\IncidenceTypeController');
 	Route::apiResource('requeriment-type', 'API\RequerimentTypeController');
 	Route::apiResource('requeriment', 'API\RequerimentController');
-
 	Route::apiResource('company-type', 'API\CompanyTypeController');
-	///Route::post('company-type/{company_type}/requeriment','API\CompanyTypeController@requerimentAdd')->name('company-type.add-requeriment');
-	///Route::delete('company-type/{company_type}/requeriment','API\CompanyTypeController@requerimentRemove')->name('company-type.remove-requeriment');
-
+	Route::apiResource('company', 'API\CompanyController')->only(['index','show','update','destroy']);
 	Route::apiResource('document-type', 'API\DocumentTypeController');
 	Route::apiResource('reply', 'API\ReplyController');
 	Route::apiResource('question', 'API\QuestionController');

@@ -32,7 +32,7 @@ class Company extends Model
     }
 
 
-     public static function createWithFile(array $attributes = [])
+    public static function createWithFile(array $attributes = [])
     {
        try
        {
@@ -53,4 +53,5 @@ class Company extends Model
           throw $e;
        }
     }
+
 }

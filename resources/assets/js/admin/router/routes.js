@@ -217,14 +217,14 @@ export const routes = [
 
 
     /**********************************************************************/
-            {
-                path: '/auth/login',
-                component: Login,
-               name: 'login',
-                meta: {
-                    default: false,
-                    title: 'Login'
-                }
+    {
+        path: '/auth/login',
+        component: Login,
+        name: 'login',
+        meta: {
+            default: false,
+            title: 'Login'
+        }
      },
 
 

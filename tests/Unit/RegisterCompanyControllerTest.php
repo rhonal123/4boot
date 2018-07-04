@@ -38,7 +38,6 @@ class RegisterCompanyControllerTest extends TestCase
         		['name' => 'PDVSA', 'phone' => '1234']
         	]
         ]);
-        echo $response->content();
         $response->assertStatus(201);
     }
 }

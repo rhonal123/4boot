@@ -92,7 +92,7 @@ class CompanyTypeControllerTest extends TestCase
         //]);
     }
     
-    /*
+
     public function testDeleteCompany()
     {
         Passport::actingAs(factory(User::class)->create(),['create-servers']);        
@@ -101,20 +101,6 @@ class CompanyTypeControllerTest extends TestCase
         $response = $this->json('DELETE',route('company-type.destroy',['document_type' => $company->id]));
         $response->assertStatus(204);
     }
-
-
-    public function testAddRequerimentCompany()
-    {
-        Passport::actingAs(factory(User::class)->create(),['create-servers']);        
-        $company = factory(CompanyType::class)->create();
-        $requeriment = factory(Requeriment::class)->create();
-        $response = $this->json('POST',route('company-type.add-requeriment',[
-            'document_type' => $company->id, 
-            'requeriment' => $requeriment->id
-            ]));
-        echo $response->content();
-        $response->assertStatus(200);
-    }
-    */
+ 
 
 }

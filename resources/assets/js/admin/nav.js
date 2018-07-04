@@ -53,9 +53,68 @@ export default {
       ]
     },
     {
-      name: 'Atención al cliente',
+      name: 'Empresas',
       url: '/components/tables',
       icon: 'fa fa-table',
+      children: [
+        { 
+          name: 'Nuevos Registros',
+          url: '/question',
+          icon: 'fa fa-pencil-square-o',
+          badge: {
+            variant: 'warning',
+            text: '48 NEW'
+          }
+        },
+        { 
+          name: 'En Proceso',
+          url: '/question',
+          icon: 'fa fa-pencil-square-o',
+          badge: {
+            variant: 'info',
+            text: '48'
+          }
+       },
+       { 
+          name: 'Aprobadas',
+          url: '/question',
+          icon: 'fa fa-pencil-square-o',
+          badge: {
+            variant: 'info',
+            text: '48'
+          }
+       }
+     ]
+    },
+    {
+      name: 'Documentos',
+      url: '/components/tables',
+      icon: 'fa fa-table',
+      children: [
+        { 
+          name: 'Nuevos',
+          url: '/question',
+          icon: 'fa fa-pencil-square-o',
+          badge: {
+            variant: 'warning',
+            text: '48 NEW'
+          }
+        },
+        { 
+          name: 'Historico',
+          url: '/question',
+          icon: 'fa fa-pencil-square-o',
+          badge: {
+            variant: 'warning',
+            text: '48 NEW'
+          }
+        }
+      ]
+    },
+    {
+      name: 'Atención al cliente',
+      url: '/components/tables',
+      icon: 'fa fa-users',
       children: [
         { 
           name: 'Preguntas',
@@ -67,6 +126,31 @@ export default {
           }
        }
      ]
+    },
+    {
+      name: 'Reportes',
+      url: '/components/tables',
+      icon: 'fa fa-bar-chart',
+      children: [
+        { 
+       }
+     ]
+    },
+    {
+      name: 'Administracion del Sistema',
+      url: '/components/tables',
+      icon: 'fa fa-cogs',
+      children: [
+      { 
+        name: 'Seguridad',
+        icon: 'fa fa-lock',
+        children:[
+          {name: 'Rol', url: 'roles'},
+          {name: 'Usuario', url: 'usuarios'}
+        ]
+      }
+     ]
     }
+
   ]
 }
