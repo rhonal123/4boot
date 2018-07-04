@@ -26,3 +26,6 @@ yarn-error.log
 .env_testing
 .buildpath
 .project
+
+!/storage/oauth-private.key
+!/storage/oauth-public.key

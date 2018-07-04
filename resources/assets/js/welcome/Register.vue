@@ -181,34 +181,37 @@
           <h4> 
             Clientes
           </h4>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>
-                  <a href="#" class="btn btn-primary btn-sm float-right" @click="customers.push({name: '', phone: ''})">
-                    <span class="fa fa-plus"></span>
-                  </a>                  
-                </th>
-                <th>Empresa</th>
-                <th scope="col">Contacto</th>
-              </tr>
-            </thead>
-            <tbody v-for="item in customers">
-              <tr>
-                <th>
-                  <a href="#" class="btn btn-primary btn-sm float-right" @click="remove(item)">
-                    <span class="fa fa-minus"></span>
-                  </a>
-                </th>
-                <td>
-                  <input type="text" v-model="item.name" class="form-control">
-                </td>
-                <td>
-                  <input type="text" v-model="item.phone" class="form-control">
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-responsive" style="width: 450px">
+            <a href="#" class="btn btn-primary btn-sm float-right" @click="customers.push({name: '', phone: ''})">
+              <span class="fa fa-plus"></span>
+            </a> 
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>
+                                     
+                  </th>
+                  <th>Empresa</th>
+                  <th scope="col">Contacto</th>
+                </tr>
+              </thead>
+              <tbody v-for="item in customers">
+                <tr>
+                  <th>
+                    <a href="#" class="btn btn-primary btn-sm float-right" @click="remove(item)">
+                      <span class="fa fa-minus"></span>
+                    </a>
+                  </th>
+                  <td>
+                    <input type="text" v-model="item.name" class="form-control">
+                  </td>
+                  <td>
+                    <input type="text" v-model="item.phone" class="form-control">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <p>
             <a href="#" class="btn btn-primary btn-sm" @click="prev"><span class="fa fa-arrow-left"></span> </a>
             <button type="submit" @click="sendForm" class="btn btn-primary float-right">Registrar</button>
