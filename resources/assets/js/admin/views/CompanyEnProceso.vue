@@ -91,7 +91,7 @@ export default {
     }
   },
   mounted () {
-    Service.nuevas(this.search).then(response => this.items = response.data );
+    Service.enProceso(this.search).then(response => this.items = response.data );
   }
 }
 </script>

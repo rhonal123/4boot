@@ -54,12 +54,12 @@ export default {
     },
     {
       name: 'Empresas',
-      url: '/components/tables',
+      url: '/companies',
       icon: 'fa fa-table',
       children: [
         { 
-          name: 'Nuevos Registros',
-          url: '/question',
+          name: 'Nuevos',
+          url: '/companies/news',
           icon: 'fa fa-pencil-square-o',
           badge: {
             variant: 'warning',
@@ -68,13 +68,22 @@ export default {
         },
         { 
           name: 'En Proceso',
-          url: '/question',
+          url: '/companies/enproceso',
           icon: 'fa fa-pencil-square-o',
           badge: {
             variant: 'info',
             text: '48'
           }
        },
+       { 
+        name: 'Rechazadas',
+        url: '/companies/rechazada',
+        icon: 'fa fa-pencil-square-o',
+        badge: {
+          variant: 'info',
+          text: '1'
+        }
+     },
        { 
           name: 'Aprobadas',
           url: '/question',

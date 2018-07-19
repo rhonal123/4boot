@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyResource extends JsonResource
 {
@@ -12,7 +13,8 @@ class CompanyResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function toArray($request)
+ 
+     public function toArray($request)
     {
         return [
             'id'       => $this->id,
@@ -21,9 +23,10 @@ class CompanyResource extends JsonResource
             'address'  => $this->address,
             'phone'    => $this->phone,
             'status'   => $this->status,
-            'customer' => $this->customer()->get(),
-            'people'    => $this->people()->get(),
-            'companyType' => $this->companyType()->get()
+            'customer' => new CustomerCompany($this->customer),
+            'people'   => $this->people,
+            'company_type' => new CompanyTypeResource($this->companyType),
+            'catalogo_path' => Storage::url($this->catalogo_path),
         ];
     }
 }

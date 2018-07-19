@@ -4,7 +4,7 @@
     <router-link class="btn btn-sm btn-primary" :to="{ name: 'document-type'}">
       <i class="fa fa-arrow-left"></i>
     </router-link>
-    Tipo de Documento  
+    Documento  
   </div>
 
   <div class="card-body">
@@ -15,7 +15,7 @@
 
 <script>
 import AddComponent from '../../components/AddComponent.vue'
-const service = require('./../../service/document-type-service');
+const service = require('./../../service/document-service');
 
 const item = {
   data: { 

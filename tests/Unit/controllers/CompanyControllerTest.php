@@ -70,9 +70,26 @@ class CompanyControllerTest extends TestCase
         Passport::actingAs(factory(User::class)->create(),['create-servers']);        
         $company = factory(Company::class)->create();
         $this->assertNotNull($company->id);
-        $response = $this->json('DELETE',route('company.destroy',['document_type' => $company->id]));
+        $response = $this->json('DELETE',route('company.destroy',['document' => $company->id]));
         $response->assertStatus(204);
     }
 
+    public function testReprobarCompany()
+    {
+        Passport::actingAs(factory(User::class)->create(),['create-servers']);        
+        $company = factory(Company::class)->create();
+        $this->assertNotNull($company->id);
+        $response = $this->json('DELETE',route('company.reprobar',['document' => $company->id]));
+        $response->assertStatus(200);
+    }
+
+    public function testAprobarCompany()
+    {
+        Passport::actingAs(factory(User::class)->create(),['create-servers']);        
+        $company = factory(Company::class)->create();
+        $this->assertNotNull($company->id);
+        $response = $this->json('PUT',route('company.aprobar',['document' => $company->id]));
+        $response->assertStatus(200);
+    }
  
 }

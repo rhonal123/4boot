@@ -26,9 +26,6 @@ const CompanyTypeEdit = resolve => {
     require.ensure(['../views/company-type/CompanyTypeEdit.vue'], ()=>{ resolve(require('../views/company-type/CompanyTypeEdit.vue')); }); 
 };
 
-
-
-
 const DocumentType = resolve => { 
     require.ensure(['../views/DocumentType.vue'], ()=>{ resolve(require('../views/DocumentType.vue')); }); 
 };
@@ -68,9 +65,6 @@ const QuestionEdit = resolve => {
     require.ensure(['../views/question/QuestionEdit.vue'], ()=>{ resolve(require('../views/question/QuestionEdit.vue')); }); 
 };
 
-
-
-
 const Requeriment = resolve => { 
     require.ensure(['../views/Requeriment.vue'], ()=>{ resolve(require('../views/Requeriment.vue')); }); 
 };
@@ -82,6 +76,26 @@ const RequerimentDetail = resolve => {
 const RequerimentEdit = resolve => { 
     require.ensure(['../views/requeriment/RequerimentEdit.vue'], ()=>{ resolve(require('../views/requeriment/RequerimentEdit.vue')); }); 
 };
+
+const Company = resolve => { 
+    require.ensure(['../views/Company.vue'], ()=>{ resolve(require('../views/Company.vue')); }); 
+};
+
+
+const CompanyEnProceso = resolve => { 
+    require.ensure(['../views/CompanyEnProceso.vue'], ()=>{ resolve(require('../views/CompanyEnProceso.vue')); }); 
+};
+
+const CompanyRechazada = resolve => { 
+    require.ensure(['../views/CompanyEnProceso.vue'], ()=>{ resolve(require('../views/CompanyRechazada.vue')); }); 
+};
+
+
+
+const CompanyDetail = resolve => { 
+    require.ensure(['../views/company/CompanyDetail.vue'], ()=>{ resolve(require('../views/company/CompanyDetail.vue')); }); 
+};
+
 
 
 /*
@@ -190,8 +204,6 @@ export const routes = [
         path: '/requeriment-type/show/:id', name: 'requeriment-type-detail', component: RequerimentTypeDetail, meta: { requiresAuth: true}  
     },
 
-
-
     /*************************************************************/
     {   
         path : '/requeriment', name: 'requeriment', component: Requeriment, meta: { requiresAuth: true} 
@@ -213,10 +225,23 @@ export const routes = [
     {   
         path: '/question/:id', name: 'question-edit', component: QuestionEdit, meta: { requiresAuth: true}  
     },
+    /********************************************************************************************************/
+    {   
+        path : '/companies/news', name: 'companies-news', component: Company, meta: { requiresAuth: true} 
+    },
+    {   
+        path: '/companies/news/show/:id', name: 'companies-news-detail', component: CompanyDetail , meta: { requiresAuth: true} 
+    },
 
+    {   
+        path : '/companies/enproceso', name: 'companies-en-proceso', component: CompanyEnProceso, meta: { requiresAuth: true} 
+    },
 
+    {   
+        path : '/companies/rechazada', name: 'companies-rehazada', component: CompanyRechazada, meta: { requiresAuth: true} 
+    },
 
-    /**********************************************************************/
+    /********************************************************************************************************/
     {
         path: '/auth/login',
         component: Login,

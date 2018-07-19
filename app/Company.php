@@ -3,11 +3,13 @@
 namespace App;
 use App\CustomerCompany;
 use App\Person;
+use App\Client;
 use App\CompanyType;
 use Log;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class Company extends Model
 {
@@ -31,6 +33,15 @@ class Company extends Model
         return $this->belongsTo(CompanyType::class);
     }
 
+    public function procesar()
+    {
+        $user = hash('md5',$this->id);
+        $hashed_random_password = Hash::make(str_random(8));
+        $hashed = Hash::make($hashed_random_password);
+        $client = Client::create(['username' => $user ,'password' => $hashed,'company_id'=> $this->id]);
+        $this->update(['status' => 'EN-PROCESO']);
+    }
+
 
     public static function createWithFile(array $attributes = [])
     {
@@ -38,7 +49,7 @@ class Company extends Model
        {
           $companyAttributes = $attributes['company'];
           $file = $companyAttributes['catalogo_path'];
-          $path = $file->store('companies');
+          $path = $file->store('public/companies');
           $companyAttributes['catalogo_path'] = $path;
           $company = self::create($companyAttributes);
           $company->people()->create($attributes['contact']);

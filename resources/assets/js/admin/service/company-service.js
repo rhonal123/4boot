@@ -12,20 +12,20 @@ class CompanyService {
   	return axios.get(`${url}`,{ params: filter });
   }
 
-  static get nuevas(search, page =1 ){
-    return index(search,page,'ESPERA');
+  static nuevas(search, page = 1 ){
+    return CompanyService.index(search,page,'ESPERA');
   }
 
-  static get enProceso(search, page =1 ){
-    return index(search,page,'EN-PROCESO');
+  static enProceso(search, page =1 ){
+    return CompanyService.index(search,page,'EN-PROCESO');
   }
 
-  static get aprobada(search, page =1 ){
-    return index(search,page,'APROBADA');
+  static aprobada(search, page =1 ){
+    return CompanyService.index(search,page,'APROBADA');
   }
 
-  static get rechazada(search, page =1 ){
-    return index(search,page,'RECHAZADA');
+  static rechazada(search, page =1 ){
+    return CompanyService.index(search,page,'RECHAZADA');
   }
 
   static getById(id) {
@@ -43,6 +43,13 @@ class CompanyService {
     });
   }
 
+  static procesar(data){
+    return axios.put(`${url}/${data.id}/procesar`);
+  }
+
+  static reprobar(data){
+    return axios.delete(`${url}/${data.id}/reprobar`);
+  }
 }
 
 module.exports = CompanyService;

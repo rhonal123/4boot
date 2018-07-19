@@ -68,4 +68,15 @@ class CompanyController extends Controller
         return response()->json([],204);
     }
 
+    public function reprobar(Company $company)
+    {
+        $company->update(['status' => 'RECHAZADA']);
+        return new CompanyResource($company);
+    }
+
+    public function procesar(Company $company)
+    {
+        $company->procesar();
+        return new CompanyResource($company);
+    }
 }
