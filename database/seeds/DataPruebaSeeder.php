@@ -12,6 +12,7 @@ use App\Role;
 use App\Requeriment;
 use App\RequerimentType;
 use App\User;
+use App\DocumentType;
 
 class DataPruebaSeeder extends Seeder
 {
@@ -23,6 +24,8 @@ class DataPruebaSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
+
+        DocumentType::create(['type' => 'Documento 1']);
         IncidenceType::create(['type' => 'Documento Dañado']);
         IncidenceType::create(['type' => 'Imagen Defectuosa']);
         IncidenceType::create(['type' => 'Falta de documento']);
@@ -45,7 +48,7 @@ class DataPruebaSeeder extends Seeder
                 ]);
         }
 
-        $client=  Client::create(['username' => 'client 1','password' => '1234','company_id' => Company::first()->id ]);
+        $client=  Client::create(['username' => 'client','password' => Hash::make('1234'),'company_id' => Company::first()->id ]);
         
         for($i = 0; $i < 25; $i++){
             Question::create([

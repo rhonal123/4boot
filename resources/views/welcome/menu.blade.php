@@ -13,14 +13,15 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbar">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"> <a class="nav-link active" href="#home">HOME <span class="sr-only">(current)</span></a> </li>
-					<li class="nav-item"> <a class="nav-link" href="{{ route('root') }}#features">FEATURES</a> </li>
-					<li class="nav-item"> <a class="nav-link" href="{{ route('root') }}#gallery">GALLERY</a> </li>
-					<li class="nav-item"> <a class="nav-link" href="{{ route('root') }}#pricing">PRICING</a> </li>
-					<li class="nav-item"> <a class="nav-link" href="{{ route('root') }}#contact">CONTACT</a> </li>
-					<li class="nav-item"> <a class="nav-link" href="{{ route('register.company') }}">REGISTRAR</a> </li>
-				</ul>
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"> <a class="nav-link active" href="#home">HOME <span class="sr-only">(current)</span></a> </li>
+				<li class="nav-item"> <a class="nav-link" href="{{ route('root') }}#features">FEATURES</a> </li>
+				<li class="nav-item"> <a class="nav-link" href="{{ route('root') }}#gallery">GALLERY</a> </li>
+				<li class="nav-item"> <a class="nav-link" href="{{ route('root') }}#pricing">PRICING</a> </li>
+				<li class="nav-item"> <a class="nav-link" href="{{ route('root') }}#contact">CONTACT</a> </li>
+				<li class="nav-item"> <a class="nav-link" href="{{ route('register.company') }}">REGISTRAR</a> </li>
+				<li class="nav-item"> <a class="nav-link" href="{{ route('login') }}">INGRESAR</a> </li>
+			</ul>
 		</div>
 	</nav>
 @endcomponent

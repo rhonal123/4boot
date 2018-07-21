@@ -2,14 +2,16 @@
 
 namespace App;
 use App\Company;
+use App\Document;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
 
-class Client extends Model
+class Client  extends Authenticatable
 {   
-    use Notifiable;
-    use SoftDeletes;
+    use HasApiTokens,Notifiable, SoftDeletes;
 
     protected $fillable = ['username','password','company_id'];
     protected $hidden = ['created_at','updated_at','delete_at'];
@@ -22,6 +24,16 @@ class Client extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);        
+    }
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class, 'owner_id');
     }
 
 }

@@ -5,6 +5,7 @@ use App\CustomerCompany;
 use App\Person;
 use App\Client;
 use App\CompanyType;
+use App\Question;
 use Log;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

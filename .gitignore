@@ -10,6 +10,7 @@
 /public/images
 /public/fonts
 /storage/*.key
+/storage/framework/*
 /vendor
 /.idea
 /.vscode
