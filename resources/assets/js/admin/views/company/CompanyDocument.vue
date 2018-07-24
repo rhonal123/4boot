@@ -35,7 +35,6 @@
               <div class="pb-2">
                 <b-btn v-b-modal.modal-center>Agregar Incidencia</b-btn>
                 <b-modal id="modal-center" centered title="Registrar incidencia">
-                  <p class="my-4">Incidencia</p>
                   <form @submit="sendForm" novalidate>
                         <div class="form-group">
                           <label for="type">Incidencias</label>
@@ -47,7 +46,7 @@
                         <div class="form-group">
                           <label for="type">Tipo Incidencias</label>
                           <select  class="form-control type" v-model="incidencia.tipo">
-                            <option v-for="option in incidencesType" v-bind:value="option.id">
+                            <option v-for="option in incidencias" v-bind:value="option.id">
                               {{ option.type }}
                             </option>
                           </select>
@@ -57,8 +56,6 @@
                         </div>
                     <button class="btn btn-primary" type="submit">Guardar</button>
                   </form>
-
-
                 </b-modal>
               </div>
               <embed  v-bind:src="i.file_path" width="100%" height="500px" type='application/pdf'>
@@ -86,7 +83,7 @@ export default{
       fields: [
       ],
       errors: [],
-      incidencesType: [],
+      incidencias: [],
       incidencia: {
         description: ''
       }
@@ -119,9 +116,8 @@ export default{
     });
 
     serviceIncidence.indexAll()
-    .then(response => {
-      console.log(response.data)
-      this.incidencesType = response.data.data
+    .then( (data)=>{
+      this.incidencias = data.data;
     });
 
   }
