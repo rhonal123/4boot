@@ -23,7 +23,8 @@ import App from './admin/App.vue'
 import VueRouter from 'vue-router';
 import { routes } from './admin/router/routes';
 import VuejsDialog from "vuejs-dialog";
-import bPagination from 'bootstrap-vue/es/components/pagination/pagination'
+import bPagination from 'bootstrap-vue/es/components/pagination/pagination';
+import { Tabs, Modal, ListGroup, Button } from 'bootstrap-vue/es/components';
 import bCol from 'bootstrap-vue/es/components/layout/col'
 import bTable from 'bootstrap-vue/es/components/table/table'
 import bTooltip from 'bootstrap-vue/es/components/tooltip/tooltip'
@@ -46,8 +47,11 @@ Vue.component('b-tooltlip', bTooltip);
 
 Vue.component('b-popover', bPopover);
 
-
+Vue.use(Tabs);
+Vue.use(Modal);
 Vue.use(Vuex);
+Vue.use(ListGroup);
+Vue.use(Button);
 
 export const store = new Vuex.Store({
   state:{

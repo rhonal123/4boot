@@ -24,6 +24,9 @@
           <router-link class="btn btn-sm btn-primary" :to="{ name: 'companies-news-detail', params: { id: row.item.id }}" >
             <i class="fa fa-info"></i>
           </router-link>
+          <router-link class="btn btn-sm btn-primary" :to="{ name: 'companies-documents', params: { id: row.item.id }}" >
+            <i class="fa fa-book"></i>
+          </router-link>
         </template>
         <template slot="companyType" slot-scope="row">
             <span  >{{row.item.company_type.type}}</span>
@@ -62,11 +65,11 @@ export default {
   return {
       items: items,
       fields: [
-        { key: 'name', label: 'Empresa', sortable: false},
-        { key: 'identity', label: 'rif', sortable: false},
-        { key: 'companyType', label: 'Tipo'},
-        { key: 'address', label: 'Direcciòn', sortable: false},
-        { key: 'phone', label: 'Telefono', sortable: false},
+        { key: 'name', label: 'EMPPRESA', sortable: false},
+        { key: 'identity', label: 'RIF', sortable: false},
+        { key: 'companyType', label: 'TIPO'},
+        { key: 'address', label: 'DIRECCION', sortable: false},
+        { key: 'phone', label: 'TELEFONO', sortable: false},
         { key: 'actions', label: '',  'class': 'text-center' }
       ],
       search: ''
@@ -74,21 +77,8 @@ export default {
   },
   methods:{
     load: function(page) {
-      Service.index(this.search,page).then(response => this.items = response.data );
+      Service.enProceso(this.search,page).then(response => this.items = response.data );
     },
-    eliminar: function(element){
-      this.$dialog.confirm('Eliminar',{ okText: "Eliminar",  loader: true,  verification: 'continue'})
-      .then(dialog => {
-        Service.delete(element.id).then(data => {
-            Service.index(this.search,this.items.current_page).then(response => this.items = response.data );
-            dialog.close();
-          })
-          .catch( c => {
-            console.error(c);
-            dialog.close();
-          });
-      });
-    }
   },
   mounted () {
     Service.enProceso(this.search).then(response => this.items = response.data );

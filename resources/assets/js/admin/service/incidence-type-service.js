@@ -8,7 +8,11 @@ class IncidenceTypeService {
   	return axios.get(`${url}`,{ params:{ page: page, search: search }});
   }
 
-  static getById(id) {
+  static indexAll(search, page = 1){
+  	return axios.get(`${url}`,{ params:{ all: true } });
+  }
+
+	static getById(id) {
     return axios.get(`${url}/${id}`);
   }
 

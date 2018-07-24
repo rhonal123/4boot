@@ -17,12 +17,20 @@ class IncidenceTypeController extends Controller
      */
     public function index(Request $request)
     {   
-        $type = $request->input('search');
-        $query = IncidenceType::when($type, function($query) use ($type){
-            return $query->where('type','like','%'. $type .'%');
-        })
-        ->orderBy('id','desc');
-        return IncidenceTypeResource::collection($query->paginate(12));
+        $all = $request->input('all');
+        if ($all)
+        {
+            return IncidenceType::all();
+        }
+        else 
+        {
+            $type = $request->input('search');
+            $query = IncidenceType::when($type, function($query) use ($type){
+                return $query->where('type','like','%'. $type .'%');
+            })
+            ->orderBy('id','desc');
+            return IncidenceTypeResource::collection($query->paginate(12));
+        }
     }
 
     /**

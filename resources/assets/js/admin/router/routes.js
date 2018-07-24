@@ -90,12 +90,14 @@ const CompanyRechazada = resolve => {
     require.ensure(['../views/CompanyEnProceso.vue'], ()=>{ resolve(require('../views/CompanyRechazada.vue')); }); 
 };
 
-
-
 const CompanyDetail = resolve => { 
     require.ensure(['../views/company/CompanyDetail.vue'], ()=>{ resolve(require('../views/company/CompanyDetail.vue')); }); 
 };
 
+
+const CompanyDocument = resolve => { 
+    require.ensure(['../views/company/CompanyDocument.vue'], ()=>{ resolve(require('../views/company/CompanyDocument.vue')); }); 
+};
 
 
 /*
@@ -231,6 +233,9 @@ export const routes = [
     },
     {   
         path: '/companies/news/show/:id', name: 'companies-news-detail', component: CompanyDetail , meta: { requiresAuth: true} 
+    },
+    {   
+        path: '/companies/news/show/:id/documents', name: 'companies-documents', component: CompanyDocument , meta: { requiresAuth: true} 
     },
 
     {   

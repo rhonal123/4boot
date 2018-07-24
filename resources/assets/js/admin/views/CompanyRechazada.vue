@@ -62,11 +62,11 @@ export default {
   return {
       items: items,
       fields: [
-        { key: 'name', label: 'Empresa', sortable: false},
-        { key: 'identity', label: 'rif', sortable: false},
-        { key: 'companyType', label: 'Tipo'},
-        { key: 'address', label: 'Direcciòn', sortable: false},
-        { key: 'phone', label: 'Telefono', sortable: false},
+        { key: 'name', label: 'EMPRESA', sortable: false},
+        { key: 'identity', label: 'RIF', sortable: false},
+        { key: 'companyType', label: 'TIPO'},
+        { key: 'address', label: 'DIRECCION', sortable: false},
+        { key: 'phone', label: 'TELEFONO', sortable: false},
         { key: 'actions', label: '',  'class': 'text-center' }
       ],
       search: ''
@@ -74,21 +74,8 @@ export default {
   },
   methods:{
     load: function(page) {
-      Service.index(this.search,page).then(response => this.items = response.data );
+      Service.rechazada(this.search,page).then(response => this.items = response.data );
     },
-    eliminar: function(element){
-      this.$dialog.confirm('Eliminar',{ okText: "Eliminar",  loader: true,  verification: 'continue'})
-      .then(dialog => {
-        Service.delete(element.id).then(data => {
-            Service.index(this.search,this.items.current_page).then(response => this.items = response.data );
-            dialog.close();
-          })
-          .catch( c => {
-            console.error(c);
-            dialog.close();
-          });
-      });
-    }
   },
   mounted () {
     Service.rechazada(this.search).then(response => this.items = response.data );

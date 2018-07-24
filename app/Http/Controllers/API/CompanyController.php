@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 use App\Requeriment;
 use App\Company;
 use App\Http\Resources\CompanyResource;
+use App\Http\Resources\CompanyDocument;
 use App\Http\Requests\CompanyRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -39,6 +40,15 @@ class CompanyController extends Controller
     public function show(Company $company)
     {
         return new CompanyResource($company);
+    }
+
+    /**
+     * @param  \App\Company  $company
+     * @return \Illuminate\Http\Response
+     */
+    public function documents(Company $company)
+    {
+        return new CompanyDocument($company);
     }
 
     /**

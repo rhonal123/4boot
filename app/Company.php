@@ -34,6 +34,11 @@ class Company extends Model
         return $this->belongsTo(CompanyType::class);
     }
 
+    public function client()
+    {
+        return $this->hasOne(Client::class);
+    }
+
     public function procesar()
     {
         $user = hash('md5',$this->id);

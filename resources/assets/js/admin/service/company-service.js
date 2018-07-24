@@ -32,6 +32,10 @@ class CompanyService {
     return axios.get(`${url}/${id}`);
   }
 
+  static getByIdFull(id) {
+    return axios.get(`${url}/${id}/documents`);
+  }
+
   static delete(id) {
     return axios.delete(`${url}/${id}`);
   }

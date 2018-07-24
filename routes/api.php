@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 	Route::apiResource('requeriment', 'API\RequerimentController');
 	Route::apiResource('company-type', 'API\CompanyTypeController');
 	Route::apiResource('company', 'API\CompanyController')->only(['index','show','update','destroy']);
-
+	Route::get('company/{company}/documents', 'API\CompanyController@documents')->name('company.documents');
 	Route::put('company/{company}/procesar', 'API\CompanyController@procesar')->name('company.procesar');
 	Route::delete('company/{company}/reprobar', 'API\CompanyController@reprobar')->name('company.reprobar');
 
