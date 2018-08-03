@@ -20,18 +20,13 @@ class IncidenceTypeService {
     return axios.delete(`${url}/${id}`);
   }
 
-  static save(data) {
-  	if(data.id){
-	    return axios.put(`${url}/${data.id}`,{
-	    	type: data.type
+  static save(path, id,  data) {
+      return axios.post(path,{
+				description: data.description,
+				incidence_type_id: data.tipo,
+				document_id: id
 	    });
 	}
-	else{
-	    return axios.post(`${url}`,{
-	    	type: data.type
-	    });
-	}
-  }
 
 }
 

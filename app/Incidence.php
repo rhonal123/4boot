@@ -9,7 +9,6 @@ use App\User;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
-use App\IncidenceType;
 
 class Incidence extends Model
 {

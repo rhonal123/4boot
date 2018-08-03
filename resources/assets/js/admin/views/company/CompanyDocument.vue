@@ -31,11 +31,13 @@
       </b-tab>
       <b-tab title="Documentos" >
            <b-tabs pills card vertical nav-wrapper-class="w-25">
-            <b-tab :title="`Tab ${i.requeriment.name}`" v-for="i in item.documents" :key="i.id">
-              <div class="pb-2">
-                <b-btn v-b-modal.modal-center>Agregar Incidencia</b-btn>
-                <b-modal id="modal-center" centered title="Registrar incidencia">
-                  <form @submit="sendForm" novalidate>
+            <b-tab :title="`Tab ${i.name}`" v-for="i in item.company_type.requeriments" :key="i.id">
+              <div class="pb-2" v-for="d in item.documents" :key="d.id">
+                <div v-if="d.requeriment.id == i.id" style="margin-bottom: 2px;border-bottom: 2px solid;">
+                <b-btn v-b-modal.modal-center class="mb-2" v-if="d.status !== 'RECHAZADO'">Agregar Incidencia</b-btn> 
+                <label class="p-2 mb-2 bg-danger text-white pull-right" role="alert" v-if="d.status === 'RECHAZADO'"> Documento Rechazado </label>
+                <b-modal id="modal-center" ref="modal" centered title="Registrar incidencia" ok-only ok-title="guardar"  @ok="guardar($event,i)" v-if="d.status !== 'RECHAZADO'">
+                  <form @submit="sendForm" novalidate class="mt-1">
                         <div class="form-group">
                           <label for="type">Incidencias</label>
                           <textarea class="form-control type" v-model="incidencia.description"> </textarea>
@@ -46,7 +48,7 @@
                         <div class="form-group">
                           <label for="type">Tipo Incidencias</label>
                           <select  class="form-control type" v-model="incidencia.tipo">
-                            <option v-for="option in incidencias" v-bind:value="option.id">
+                            <option v-for="option in incidencias" v-bind:value="option.id" :key="option.id">
                               {{ option.type }}
                             </option>
                           </select>
@@ -54,14 +56,16 @@
                             {{errors}}
                           </div>
                         </div>
-                    <button class="btn btn-primary" type="submit">Guardar</button>
                   </form>
                 </b-modal>
+                <embed  v-bind:src="d.file_path" width="100%" height="500px" type='application/pdf'>
+                </div>
               </div>
-              <embed  v-bind:src="i.file_path" width="100%" height="500px" type='application/pdf'>
             </b-tab>
           </b-tabs>
        </b-tab>
+        <b-tab title="Aprobaciones" >
+        </b-tab>
     </b-tabs>
   </div>
 </div>
@@ -78,7 +82,8 @@ export default{
   data () {
     return {
       item: {
-        documents: []
+        documents: [],
+        company_type: { requeriments: [] }
       },
       fields: [
       ],
@@ -90,6 +95,14 @@ export default{
     }
   },
   methods:{
+    guardar: function(event, i){
+      event.preventDefault();
+      console.log(i, this.incidencia);
+      serviceIncidence.save(i.incidence_path, i.id , this.incidencia).then(r => {
+          console.log(r);
+      });
+      this.$refs.modal[0].hide();
+    },
     aprobar: function(element){
       if (confirm('Esta seguro de aprobar esta empresa ')) {
         service.procesar(this.item).then(r => {

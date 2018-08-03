@@ -4,7 +4,8 @@
 	@component('../components/section-card')
 	<div id="app">
         <div class="container">
-            <div class="card-body pm-2 col-md-5">
+            <div class="card-body row">
+                <div class="col-md-7">
                 <form method="POST"  action="{{ route('home-registrar-documento') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
@@ -39,6 +40,8 @@
                         </ul>
                     </div>
                 @endif
+                </div>
+                <div class="col-md-5">
                 <div class="pt-2">
                     <p> <strong> Estas octando por el puesto </strong> {{ $company->companyType->type}} </p>
                     <p> Los Requisitos son los siguientes </p>
@@ -52,6 +55,7 @@
                         </a>
                         @endforeach
                     </div>
+                </div>
                 </div>
             </div>
         </div>

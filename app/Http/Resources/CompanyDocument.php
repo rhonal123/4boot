@@ -27,7 +27,7 @@ class CompanyDocument extends JsonResource
             'people'   => $this->people,
             'company_type' => new CompanyTypeResource($this->companyType),
             'catalogo_path' => Storage::url($this->catalogo_path),
-            'documents' => ClientDocument::collection($this->client->documents)
+            'documents' => ClientDocument::collection($this->client->documents()->orderBy('status')->get())
         ];
     }
 }

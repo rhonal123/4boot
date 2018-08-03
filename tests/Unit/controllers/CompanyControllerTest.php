@@ -2,7 +2,9 @@
 
 namespace Tests\Unit\controllers;
 use App\Company;
+use App\Document;
 use App\CompanyType;
+use App\IncidenceType;
 use App\User;
 use App\Requeriment;
 use Tests\TestCase;
@@ -88,8 +90,25 @@ class CompanyControllerTest extends TestCase
         Passport::actingAs(factory(User::class)->create(),['create-servers']);        
         $company = factory(Company::class)->create();
         $this->assertNotNull($company->id);
-        $response = $this->json('PUT',route('company.aprobar',['document' => $company->id]));
+        $response = $this->json('PUT',route('company.procesar',['document' => $company->id]));
         $response->assertStatus(200);
     }
- 
+
+    public function testCearIncidencia()
+    {
+        Passport::actingAs(factory(User::class)->create(),['create-servers']);        
+        $company = factory(Company::class)->create();
+        $type = factory(IncidenceType::class)->create();
+        $document = factory(Document::class)->create();
+        $this->assertNotNull($company->id);
+        $response = $this->json('POST',route('company.incidecia',[
+            'description' => 'Soy un test ',
+            'incidence_type_id' => $type->id,
+            'document_id' => $document->id,
+            'document' => $document->id,
+            'company' => $company->id
+        ]));
+        // echo $response->getContent();
+        $response->assertStatus(201);
+    }
 }

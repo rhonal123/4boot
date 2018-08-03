@@ -15,8 +15,10 @@ window.Vue = require('vue');
  */
 import Register from './welcome/Register.vue';
 
-const app = new Vue({
-  el: '#app-register',
-  render: h => h(Register),
-}); 
+if(document.getElementById('app-register')){
+  const app = new Vue({
+    el: '#app-register',
+    render: h => h(Register),
+  }); 
+}
 

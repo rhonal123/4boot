@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\API;
 use App\Requeriment;
 use App\Company;
+use App\Incidence;
+use App\Document;
 use App\Http\Resources\CompanyResource;
+use App\Http\Resources\IncidenceResource;
 use App\Http\Resources\CompanyDocument;
 use App\Http\Requests\CompanyRequest;
+use App\Http\Requests\IncidenceRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -89,4 +94,14 @@ class CompanyController extends Controller
         $company->procesar();
         return new CompanyResource($company);
     }
+
+    public function registrarIncidencia(IncidenceRequest $request, Company $company, Document $document){
+        $validated = $request->validated();
+        $validated['user_id'] = Auth::id();
+        $incidence = Incidence::create($validated);
+        $document->status = 'RECHAZADO';
+        $document->save();
+        return new IncidenceResource($incidence);
+    }
+
 }

@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 	Route::get('company/{company}/documents', 'API\CompanyController@documents')->name('company.documents');
 	Route::put('company/{company}/procesar', 'API\CompanyController@procesar')->name('company.procesar');
 	Route::delete('company/{company}/reprobar', 'API\CompanyController@reprobar')->name('company.reprobar');
+	
+	Route::post('company/{company}/{document}/incidencia', 'API\CompanyController@registrarIncidencia')->name('company.incidecia');
 
 	Route::apiResource('document-type', 'API\DocumentTypeController');
 	Route::apiResource('reply', 'API\ReplyController');
