@@ -36,6 +36,7 @@
                 <div v-if="d.requeriment.id == i.id" style="margin-bottom: 2px;border-bottom: 2px solid;">
                 <b-btn v-b-modal.modal-center class="mb-2" v-if="d.status !== 'RECHAZADO'">Agregar Incidencia</b-btn> 
                 <label class="p-2 mb-2 bg-danger text-white pull-right" role="alert" v-if="d.status === 'RECHAZADO'"> Documento Rechazado </label>
+                <p v-for="i in item.incidences" :key="i.id">Documento Rechazado: {{i.description}} </p>
                 <b-modal id="modal-center" ref="modal" centered title="Registrar incidencia" ok-only ok-title="guardar"  @ok="guardar($event,i)" v-if="d.status !== 'RECHAZADO'">
                   <form @submit="sendForm" novalidate class="mt-1">
                         <div class="form-group">
@@ -65,6 +66,21 @@
           </b-tabs>
        </b-tab>
         <b-tab title="Aprobaciones" >
+              <div class="pb-2" >
+                <div class="pb-2" >
+                  <b-btn v-b-modal.aprobarDocumento>Aprobar Documento</b-btn> 
+                </div>
+                <ul class="list-group">
+                  <li class="list-group-item">Cras justo odio</li>
+                  <li class="list-group-item">Dapibus ac facilisis in</li>
+                  <li class="list-group-item">Morbi leo risus</li>
+                  <li class="list-group-item">Porta ac consectetur ac</li>
+                  <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+                <b-modal id="aprobarDocumento" ref="aprobarDocumento" centered title="Aprobar Docucmentos" ok-only ok-title="Aprobar Documento"  @ok="aprobarDocumento($event)">
+                  <h4> Quieres Realizar una aprobaciòn ? </h4>
+                </b-modal>
+              </div>
         </b-tab>
     </b-tabs>
   </div>
@@ -95,6 +111,14 @@ export default{
     }
   },
   methods:{
+    aprobarDocumento: function( event){
+      event.preventDefault();
+      console.log( event, this.$refs.aprobarDocumento);
+      //service.aprobarDocumento89..then (r => {
+
+      //});
+      this.$refs.aprobarDocumento.hide();
+    },
     guardar: function(event, i){
       event.preventDefault();
       console.log(i, this.incidencia);

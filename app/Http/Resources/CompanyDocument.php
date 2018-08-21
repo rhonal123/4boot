@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\ClientDocument;
+use App\Http\Resources\ApprovalResource;
 use Illuminate\Support\Facades\Storage;
 
 class CompanyDocument extends JsonResource
@@ -27,7 +28,8 @@ class CompanyDocument extends JsonResource
             'people'   => $this->people,
             'company_type' => new CompanyTypeResource($this->companyType),
             'catalogo_path' => Storage::url($this->catalogo_path),
-            'documents' => ClientDocument::collection($this->client->documents()->orderBy('status')->get())
+            'documents' => ClientDocument::collection($this->client->documents()->orderBy('status')->get()),
+            'aprobaciones' => ApprovalResource::collection($this->aprobaciones()->orderBy('created_at')->get())
         ];
     }
 }

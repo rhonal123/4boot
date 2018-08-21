@@ -39,6 +39,27 @@ class Company extends Model
         return $this->hasOne(Client::class);
     }
 
+    public function aprobaciones()
+    {
+        return $this->hasMany(Approval::class);
+    }
+
+    public function aprobar($usuario)
+    {
+        $total =  $this->aprobaciones()->count();
+        if( $total < 5)
+        {
+            $this->aprobaciones()->create(['company_id' => $this->id, 'user_id' => $usuario->id, 'admin' => $usuario->role_id == 1]);
+            $table->boolean('approved')->default(true);
+        }
+        $total =  $this->aprobaciones()->count();
+        if($total == 5 )
+        {
+            $this->status = 'APROBADA';
+            $this->update();
+        }
+    }
+
     public function procesar()
     {
         $user = hash('md5',$this->id);

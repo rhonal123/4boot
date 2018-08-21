@@ -95,6 +95,12 @@ class CompanyController extends Controller
         return new CompanyResource($company);
     }
 
+    public function aprobar(Company $company)
+    {
+        $company->aprobar(Auth::user());
+        return new CompanyResource($company);
+    }
+
     public function registrarIncidencia(IncidenceRequest $request, Company $company, Document $document){
         $validated = $request->validated();
         $validated['user_id'] = Auth::id();

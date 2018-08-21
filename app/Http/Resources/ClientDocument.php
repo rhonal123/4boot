@@ -22,6 +22,7 @@ class ClientDocument extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'requeriment' => new RequerimentResource($this->requeriment),
+            'incidences' => $this->incidences,
             'status' => $this->status,
             'incidence_path' => route('company.incidecia',[ 'company' => $this->client->company_id,  'document' => $this->id ])       
         ];
