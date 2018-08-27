@@ -1,9 +1,22 @@
 <template>
 <div class="card">
   <div class="card-header">
-    <router-link class="btn btn-sm btn-primary" :to="{ name: 'companies-news'}">
+    <router-link class="btn btn-sm btn-primary" :to="{ name: 'companies-news'}" v-if="item.status==='ESPERA'">
       <i class="fa fa-arrow-left"></i>
     </router-link>
+
+    <router-link class="btn btn-sm btn-primary" :to="{ name: 'companies-en-proceso'}" v-if="item.status==='EN-PROCESO'">
+      <i class="fa fa-arrow-left"></i>
+    </router-link>
+
+    <router-link class="btn btn-sm btn-primary" :to="{ name: 'companies-rehazada'}" v-if="item.status==='RECHAZADA'">
+      <i class="fa fa-arrow-left"></i>
+    </router-link>
+
+    <router-link class="btn btn-sm btn-primary" :to="{ name: 'companies-aprobadas'}" v-if="item.status==='APROBADA'">
+      <i class="fa fa-arrow-left"></i>
+    </router-link>
+
     Empresa  
   </div>
 

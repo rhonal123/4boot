@@ -32,13 +32,11 @@ export default {
           name: 'Tipo de Empresas',
           url: '/company-type',
           icon: 'fa fa-id-badge',
-
         },
         {
           name: 'Tipo Documento',
           url: '/document-type',
           icon: 'fa fa-id-badge',
-
         },
         {
           name: 'Tipo de Requerimiento',
@@ -60,38 +58,38 @@ export default {
         { 
           name: 'Nuevos',
           url: '/companies/news',
-          icon: 'fa fa-pencil-square-o',
-          badge: {
-            variant: 'warning',
-            text: '48 NEW'
-          }
+          icon: 'fa fa-pencil-square-o'
+//          badge: {
+//            variant: 'warning',
+//            text: '48 NEW'
+//          }
         },
         { 
           name: 'En Proceso',
           url: '/companies/enproceso',
           icon: 'fa fa-pencil-square-o',
-          badge: {
-            variant: 'info',
-            text: '48'
-          }
+//          badge: {
+//            variant: 'info',
+//            text: '48'
+//          }
        },
        { 
         name: 'Rechazadas',
         url: '/companies/rechazada',
         icon: 'fa fa-pencil-square-o',
-        badge: {
-          variant: 'info',
-          text: '1'
-        }
+//        badge: {
+//          variant: 'info',
+//          text: '1'
+//        }
      },
        { 
           name: 'Aprobadas',
-          url: '/question',
+          url: '/companies/aprobadas',
           icon: 'fa fa-pencil-square-o',
-          badge: {
-            variant: 'info',
-            text: '48'
-          }
+//          badge: {
+//            variant: 'info',
+//            text: '48'
+//          }
        }
      ]
     },
@@ -104,19 +102,19 @@ export default {
           name: 'Nuevos',
           url: '/question',
           icon: 'fa fa-pencil-square-o',
-          badge: {
-            variant: 'warning',
-            text: '48 NEW'
-          }
+//          badge: {
+//            variant: 'warning',
+//            text: '48 NEW'
+//          }
         },
         { 
           name: 'Historico',
           url: '/question',
           icon: 'fa fa-pencil-square-o',
-          badge: {
-            variant: 'warning',
-            text: '48 NEW'
-          }
+//          badge: {
+//            variant: 'warning',
+//            text: '48 NEW'
+//          }
         }
       ]
     },
@@ -129,10 +127,10 @@ export default {
           name: 'Preguntas',
           url: '/question',
           icon: 'fa fa-pencil-square-o',
-          badge: {
-            variant: 'warning',
-            text: '48 NEW'
-          }
+//          badge: {
+//            variant: 'warning',
+//            text: '48 NEW'
+//          }
        }
      ]
     },

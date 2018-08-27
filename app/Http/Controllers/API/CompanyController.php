@@ -89,6 +89,14 @@ class CompanyController extends Controller
         return new CompanyResource($company);
     }
 
+
+    public function aprobarEmpresa(Company $company)
+    {
+        $company->update(['status' => 'APROBADA']);
+        return new CompanyResource($company);
+    }
+
+    
     public function procesar(Company $company)
     {
         $company->procesar();

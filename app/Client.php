@@ -13,7 +13,7 @@ class Client  extends Authenticatable
 {   
     use HasApiTokens,Notifiable, SoftDeletes;
 
-    protected $fillable = ['username','password','company_id'];
+    protected $fillable = ['username','password','company_id','textpassword'];
     protected $hidden = ['created_at','updated_at','delete_at'];
 
     protected $casts = [

@@ -1,7 +1,7 @@
 <template>
 <div class="card">
   <div class="card-header">
-    Empresas 
+    Empresas Nuevas
   </div>
   <div class="card-body">
     <div class="clearfix mt-2 mb-2">

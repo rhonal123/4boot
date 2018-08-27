@@ -54,6 +54,17 @@ class CompanyService {
   static reprobar(data){
     return axios.delete(`${url}/${data.id}/reprobar`);
   }
+
+  static aprobarDocumento(data){
+    return axios.put(`${url}/${data.id}/aprobar`);
+  }
+  
+  static aprobarEmpresa(data){
+    return axios.put(`${url}/${data.id}/aprobar-empresa`);
+  }
+  
+
+
 }
 
 module.exports = CompanyService;

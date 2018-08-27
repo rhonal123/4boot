@@ -50,7 +50,6 @@ class Company extends Model
         if( $total < 5)
         {
             $this->aprobaciones()->create(['company_id' => $this->id, 'user_id' => $usuario->id, 'admin' => $usuario->role_id == 1]);
-            $table->boolean('approved')->default(true);
         }
         $total =  $this->aprobaciones()->count();
         if($total == 5 )
@@ -65,8 +64,10 @@ class Company extends Model
         $user = hash('md5',$this->id);
         $hashed_random_password = Hash::make(str_random(8));
         $hashed = Hash::make($hashed_random_password);
-        $client = Client::create(['username' => $user ,'password' => $hashed,'company_id'=> $this->id]);
+        $client = Client::create(['username' => $user ,'password' => $hashed, 'textpassword' => $hashed_random_password, 'company_id'=> $this->id]);
+        Log::debug( $client);
         $this->update(['status' => 'EN-PROCESO']);
+        // enviar Correo a la empresa de cliente generado 
     }
 
 

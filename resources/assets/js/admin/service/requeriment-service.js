@@ -17,7 +17,6 @@ class RequerimentService {
   }
 
   static save(data) {
-    console.log("..........................",data,`${url}/${data.id}`)
   	if(data.id){
 	    return axios.put(`${url}/${data.id}`,{
         name: data.name,

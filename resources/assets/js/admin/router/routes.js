@@ -90,6 +90,11 @@ const CompanyRechazada = resolve => {
     require.ensure(['../views/CompanyEnProceso.vue'], ()=>{ resolve(require('../views/CompanyRechazada.vue')); }); 
 };
 
+const CompanyAprobada = resolve => { 
+    require.ensure(['../views/CompanyAprobada.vue'], ()=>{ resolve(require('../views/CompanyAprobada.vue')); }); 
+};
+
+
 const CompanyDetail = resolve => { 
     require.ensure(['../views/company/CompanyDetail.vue'], ()=>{ resolve(require('../views/company/CompanyDetail.vue')); }); 
 };
@@ -244,6 +249,10 @@ export const routes = [
 
     {   
         path : '/companies/rechazada', name: 'companies-rehazada', component: CompanyRechazada, meta: { requiresAuth: true} 
+    },
+
+    {   
+        path : '/companies/aprobadas', name: 'companies-aprobadas', component: CompanyAprobada, meta: { requiresAuth: true} 
     },
 
     /********************************************************************************************************/

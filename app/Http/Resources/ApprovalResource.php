@@ -18,6 +18,7 @@ class ApprovalResource extends JsonResource
             'company' => $this->company,
             'user' =>  $this->user,
             'admin' => $this->admin,
+            'created_at' => $this->created_at
         ];
     }
 }

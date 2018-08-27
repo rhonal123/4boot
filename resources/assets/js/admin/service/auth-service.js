@@ -12,8 +12,11 @@ class AuthService {
   }
 
   static logout(){
-
   	return axios.delete('/api/logout');
+  }
+
+  static usuario(){
+  	return axios.get('/api/usuario');
   }
 
 }

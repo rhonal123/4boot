@@ -1,7 +1,7 @@
 <template>
 <div class="card">
   <div class="card-header">
-    Empresas Rehazadas
+    Empresas Aprobadas
   </div>
   <div class="card-body">
     <div class="clearfix mt-2 mb-2">
@@ -74,11 +74,11 @@ export default {
   },
   methods:{
     load: function(page) {
-      Service.rechazada(this.search,page).then(response => this.items = response.data );
+      Service.aprobada(this.search,page).then(response => this.items = response.data );
     },
   },
   mounted () {
-    Service.rechazada(this.search).then(response => this.items = response.data );
+    Service.aprobada(this.search).then(response => this.items = response.data );
   }
 }
 </script>
