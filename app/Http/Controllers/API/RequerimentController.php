@@ -19,18 +19,18 @@ class RequerimentController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->input('page') == 'all')
-        {
-            return RequerimentResource::collection(Requeriment::orderBy('id','desc')->get());
-        }
+        //if($request->input('page') == 'all')
+        //{
+            return RequerimentResource::collection(Requeriment::with('requerimentType')->orderBy('id','desc')->get());
+        //}
         
-        $search = $request->input('search');
-        $query = Requeriment::when($search, function($query) use ($search){
-            return $query->where('name','like','%'. $search .'%');
-        })
-        ->orderBy('code','desc')
-        ->orderBy('id','desc');
-        return RequerimentResource::collection($query->paginate(12));
+        //$search = $request->input('search');
+        //$query = Requeriment::when($search, function($query) use ($search){
+        //    return $query->where('name','like','%'. $search .'%');
+        //})
+        //->orderBy('code','desc')
+        //->orderBy('id','desc');
+        //return RequerimentResource::collection($query->paginate(12));
     }
 
     /**

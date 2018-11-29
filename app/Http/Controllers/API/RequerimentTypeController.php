@@ -21,17 +21,17 @@ class RequerimentTypeController extends Controller
      */
     public function index(Request $request)
     {   
-        if($request->input('page') == 'all')
-        {
+        //if($request->input('page') == 'all')
+        //{
             return RequerimentTypeResource::collection(RequerimentType::orderBy('id','desc')->get());
-        }
+        //}
         
-        $type = $request->input('search');
-        $query = RequerimentType::when($type, function($query) use ($type){
-            return $query->where('type','like','%'. $type .'%');
-        })
-        ->orderBy('id','desc');
-        return RequerimentTypeResource::collection($query->paginate(12));
+        //$type = $request->input('search');
+        //$query = RequerimentType::when($type, function($query) use ($type){
+        //    return $query->where('type','like','%'. $type .'%');
+        //})
+        //->orderBy('id','desc');
+        //return RequerimentTypeResource::collection($query->paginate(12));
     }
 
     /**

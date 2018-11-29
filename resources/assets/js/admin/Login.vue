@@ -2,7 +2,8 @@
   <div class="login">
        <div class="card-body card-block">
        <div class="alert alter-danget"> Credenciales Incorrectas</div>
-        <form @submit="sendForm" novalidate>
+        <form @submit="sendForm" novalidate> 
+
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
@@ -16,7 +17,7 @@
             </div>
           </div>
           <div class="form-actions form-group">
-              <button type="submit" class="btn btn-success btn-md">Log In</button>
+              <button type="submit" class="btn btn-success btn-md" >Log In</button>
           </div>
         </form>
       </div>
@@ -31,29 +32,34 @@ export default {
   name: 'Login',
  data () {
     return {
-      email: 'rhonalchirinos@gmail.com',
+      email: 'edwar586garcia@gmail.com',
       password: '1234'       
     }
   },
   methods:{
     sendForm: function(form) {
+      console.log('blblblb',form)
       form.preventDefault();
       form.stopPropagation();
+       
       service.login({
         email: this.email,
         password: this.password
-      })
-      .then(response => {
-        if(response.status === 200){
-          this.$store.state.isLoggedIn =true;
+      }).then( response => {
+        if(response.status === 200) {
+          console.log(response);
           window.localStorage.setItem('token',JSON.stringify(response.data.success));
+          alert('soy unb teasease')
           this.$router.push({name:'home'});
         }
       })
       .catch(error=> {
         console.error(error)
-        this.errors ='Credenciales Incorrectas'
-      });  
+        // this.errors ='Credenciales Incorrectas'
+          alert('soy unb errrrrrr')
+      });
+                alert('soy unb ass')
+
     }
   },
 }
